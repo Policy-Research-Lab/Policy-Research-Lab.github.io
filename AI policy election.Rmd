@@ -1,0 +1,92 @@
+---
+title: "2024 AI Policy Platforms"
+author: "Advanced Technologies Silo"
+output:
+  html_document:
+    theme: flatly
+    df_print: paged
+github_repo: https://github.com/Policy-Research-Lab/Policy-Research-Lab.github.io
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+A defining feature of the expansion of the advanced technologies field is the exponential growth that each new addition receives. In recent years, artificial intelligence has been no exception to this rule: the technology, despite is relative longevity in the private sector, has undergone a boom in public use and public perception. This trend has brought alongside it a parallel trend in government attention, resulting on some of the first examples of AI policy being put into practice.
+
+The official national policy on artificial intelligence, defined commonly by the United States government as "the computational techniques that simulate human cognitive capabilities," will likely be decided by the next election [coe.gsa.gov source]. This brief commentary will examine the current AI policy measures implemented by the executive branch, predict the future AI policy predictions of the two presidential candidates of the 2024 election, and outline strategies to compare the two platforms.
+
+## Analysis of Executive Orders
+
+While originally established as a tool to direct the nation quickly in times of strife, the executive order has in recent years become a regular method of policy implementation [source]. The order is one of the few pieces of policy that depends entirely on the executive branch, with little involvement from the other two. In addition, executive orders are one of the few places where artificial intelligence is explicitly mentioned in American policy, and consequentially serve as rare "goalposts" in this burgeoning field. As the outcome of the 2024 election will likely have a great impact on these executive orders, it stands to reason that the outcome will heavily shape these executive orders, and therefore lay down a roadmap for any future development of AI policy. Due to this, the examination of the past executive orders on AI produced by both parties is an essential element in predicting the direction of AI policy beyond the election.
+
+The Trump and Biden administrations both passed executive orders concerning AI during their terms. The Trump administration passed "Maintaining American Leadership in Artificial Intelligence" in 2019 at a length of 2,996 words. Similarly, the Biden administration passed "Executive Order on the Safe, Secure, and Trustworthy Development and Use of Artificial Intelligence" in 2023 at 21,871 words - a length nearly 10 times that of the previous executive order. The difference in length may be partially attributed to the difference in public awareness of artificial intelligence during the two administrations. As seen from the data below, the artificial intelligence sector has boomed between the passing of the two orders. This increase in attention may have resulted in a necessarily more detailed executive order, hence the greater length.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(dplyr)
+library(ggplot2)
+library(forcats)
+df <- read.csv("C:\\Users\\Loren\\OneDrive\\Documents\\Work\\Salem\\New folder\\cumulative-number-of-large-scale-ai-models-by-domain.csv")
+
+df2 <- df[df$Entity != "Total", ]
+
+ggplot(df2, aes(x = Year,
+                     y = Cumulative.number.of.large.scale.AI.models.by.domain, 
+                     fill = forcats::fct_rev(Entity))) +
+  geom_area(color = "black") +
+  labs(title = "Cumulative Number of Large-Scale AI Models by Domain",
+       subtitle = "2017 to 2024",
+       caption = "source: Our World in Data",
+       x = "Year",
+       y = "Number of Large-Scale AI Models",
+       fill = "Entity") +
+  theme_minimal()
+```
+
+In order to empirically measure the differences between the two orders, a basic natural language processing analysis was conducted. First, the orders were cleaned, processed, and tokenized. Then, the tokenized lists were transformed into a frequency count dictionary. Finally, the top 75 most common words of each executive order were compared. Below lists the top 19 words from each executive order that were not among the list of 75 words from the other executive order.
+
+|     Trump      |    Biden    |
+|:--------------:|:-----------:|
+|    American    |     AI      |
+|     select     |    shall    |
+|     values     |  secretary  |
+|   advantage    |    order    |
+| prioritization | appropriate |
+|   protecting   |  including  |
+| breakthroughs  |     use     |
+|     fully      |  security   |
+|  maintaining   |   within    |
+|     today      |  agencies   |
+|    missions    |    days     |
+|   achieving    |  director   |
+|   usability    |   federal   |
+|  improvements  |    risks    |
+|   leveraging   |  national   |
+|    liberty     |    data     |
+|    citizens    | development |
+|    promises    |     law     |
+|     leader     |  guidance   |
+
+The differences observed in the table above align quite strongly with the differences projected in the campaign platforms of each party. As foreshadowed by the titles of the two orders, the main differences in the substance of the documents relates to the central goal of each order: while the Trump administration seeks  to adopt a "lassiez-faire" approach to AI policy with the idea that the benefits of an unburdened AI sector will outweigh the costs of under-regulation, the Biden administration seeks to use a heavier hand. This indicates that the two administrations create high-level policy that is aligned with their campaign portrayals.
+
+## Election Outcomes
+
+From the analysis of his past executive orders, as well as public comments, we are able to approximate the trajectory of AI policy under the Trump administration. First, based off of the use of the executive order early into the AI boom, artificial intelligence policy seems to be a priority for the administration. This is compounded by the inclusion of artificial intelligence policy on the Trump platform's official website [cite].
+
+Though the importance of AI policy in a potential Trump administration is apparent, the direction of this policy remains to be seen. On one hand, there is some overlap between the two policies However, the candidate has appeared to diverge from his previous alignment with the opposing party, and instead has vowed to repeal the Biden AI EO [source]. It is uncertain whether he intends to pass a new EO focused on "promoting American values," as his previous EO has, or leave AI policy an open-ended question in an attempt to encourage further growth of the industry. Allies of the former president are reported to be drafting an executive order that would launch "Manhattan Projects" to expand the military's use of artificial intelligence, but it is unclear whether the candidate intends to use this draft.
+
+The Harris administration's approach to AI policy appears to be a strong continuation of recent efforts by the Biden administration. In the field of artificial intelligence, the Harris platform has made little effort to distance themselves from the Biden administration, indicating that her presidency would uphold the policy directions set forth by her predecessor. In fact, the vice president has been heading the Biden administration's push for AI policy [<https://foreignpolicy.com/2024/08/19/kamala-harris-czar-ai-biden-white-house/>]. This indicates a more cautious approach to domestic AI proliferation than her competitor. In addition, Harris has consistently represented the United States at AI policy functions abroad, indicating that a more international approach to AI regulation may be seen in a potential Harris administration [source].
+
+Though the two platforms differ on the extent to which to regulate domestic advancements in artificial intelligence, they show a greater degree of alignment when it comes to national security. The recently released National Security Memorandum on Artificial Intelligence indicates a strong desire to "ensure that America leads the way in seizing the promise" of AI, a position that is largely paralleled by the Trump campaign's position [cite white house fact sheet]. However, to reiterate the difference between the two campaigns, there is an emphasis placed on "managing the risks of AI" which takes a backseat to competition in the Trump campaign.
+
+## Limitations, Implications, and Future Directions
+
+The major limitation of this commentary was mentioned previously as the difference in the AI landscape between the Trump and Biden administrations. It is simple to anticipate a continuation of Harris's AI leadership under the Biden administration at a time of high growth in the field. It is harder to recreate this prediction for Trump, whose policy was passed before artificial intelligence impacted a majority of his constituents.
+
+At present, it is also difficult to predict which strategy is the best. In order to determine if the laissez-faire approach to AI policy of the Trump administration truly results in higher growth compared to Harris's strategy, a comparison of the two methods on a large scale is essential. However, the minimal artificial intelligence policy that has been passed on an international scale has not been upheld long enough to support an in-depth comparison of the two strategies. A potential way around this may be a difference in differences test on a state-by-state level within the United States, a strategy that the Policy Research Lab may tackle in the future.
+
+## Conclusion
+
+Though both the Trump and Harris campaigns have agreed that artificial intelligence is an essential policy area during the next administration, the two sides differ on how to address the promise and danger of the developing field. It is clear that both sides intend to pursue aggressive, executive-level policy, making the 2024 election essential in laying the foundation of national AI policy.
